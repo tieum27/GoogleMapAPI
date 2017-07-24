@@ -1,0 +1,67 @@
+<%= form_with(model: condo, local: true) do |form| %>
+  <% if condo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(condo.errors.count, "error") %> prohibited this condo from being saved:</h2>
+
+      <ul>
+      <% condo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :condo_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, id: :condo_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :latittude %>
+    <%= form.text_field :latittude, id: :condo_latittude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :longitude %>
+    <%= form.text_field :longitude, id: :condo_longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city, id: :condo_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <%= form.text_field :state, id: :condo_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :country %>
+    <%= form.text_field :country, id: :condo_country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip_code %>
+    <%= form.text_field :zip_code, id: :condo_zip_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_number %>
+    <%= form.text_field :phone_number, id: :condo_phone_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hours %>
+    <%= form.text_field :hours, id: :condo_hours %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

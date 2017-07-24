@@ -1,0 +1,100 @@
+<p id="notice"><%= notice %></p>
+<html>
+  <head>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+  </head>
+  <body>
+    <h3>condos in Gas Lamp District</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 32.709667, lng: -117.157866};
+        var j450 = {lat:32.7107368, lng: -117.1558866};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: uluru
+        });
+        var image = 'http://maps.google.com/mapfiles/kml/pal3/icon21.png';
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+          icon: image
+          });
+        var marker1 = new google.maps.Marker({
+            position: j450,
+            map: map,
+            icon: image
+        });
+        // : This uses cross-domain XHR, and may not work on older browsers.
+        // Create a <script> tag and set the USGS URL as the source.
+             var script = document.createElement('script');
+             // This example uses a local copy of the GeoJSON stored at
+             // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+             script.src = '/condos.json';
+             document.getElementsByTagName('head')[0].appendChild(script);
+           }
+
+           // Loop through the results array and place a marker for each
+           // set of coordinates.
+           window.eqfeed_callback = function(results) {
+             for (var i = 0; i < results.length; i++) {
+              //  var coords = results.features[i].geometry.coordinates;
+               var latLng = new google.maps.LatLng(latitude,longitude);
+               var marker = new google.maps.Marker({
+                 position: latLng,
+                 map: map
+               });
+             }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCheRcTO2xHYLnSWGJtySnf-t6EZe1DTHc&callback=initMap">
+  </script>
+  </body>
+
+<h1>condos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>City</th>
+      <th>Zip code</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Phone number</th>
+      <th>Hours</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @condos.each do |condo| %>
+      <tr>
+        <td><%= condo.name %></td>
+        <td><%= condo.location %></td>
+        <td><%= condo.city %></td>
+        <td><%= condo.zip_code %></td>
+        <td><%= condo.state %></td>
+        <td><%= condo.country %></td>
+        <td><%= condo.phone_number %></td>
+        <td><%= condo.hours %></td>
+        <td><%= link_to 'Show', condo %></td>
+        <td><%= link_to 'Edit', edit_condo_path(condo) %></td>
+        <td><%= link_to 'Destroy', condo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New condo', new_condo_path %>
+<!-- Robs google maps javascript api key -->
+<!-- AIzaSyCheRcTO2xHYLnSWGJtySnf-t6EZe1DTHc -->

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @condo.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @condo.location %>
+</p>
+
+<p>
+  <strong>Latittude:</strong>
+  <%= @condo.latittude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @condo.longitude %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @condo.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @condo.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @condo.country %>
+</p>
+
+<p>
+  <strong>Zip code:</strong>
+  <%= @condo.zip_code %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @condo.phone_number %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%= @condo.hours %>
+</p>
+
+<%= link_to 'Edit', edit_condo_path(@condo) %> |
+<%= link_to 'Back', condos_path %>
