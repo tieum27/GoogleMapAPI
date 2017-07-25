@@ -9,55 +9,17 @@
     </style>
   </head>
   <body>
-    <h3>condos in Gas Lamp District</h3>
-    <div id="map"></div>
-    <script>
-      function initMap() {
-        var uluru = {lat: 32.709667, lng: -117.157866};
-        var j450 = {lat:32.7107368, lng: -117.1558866};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 17,
-          center: uluru
-        });
-        var image = 'http://maps.google.com/mapfiles/kml/pal3/icon21.png';
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map,
-          icon: image
-          });
-        var marker1 = new google.maps.Marker({
-            position: j450,
-            map: map,
-            icon: image
-        });
-        // : This uses cross-domain XHR, and may not work on older browsers.
-        // Create a <script> tag and set the USGS URL as the source.
-             var script = document.createElement('script');
-             // This example uses a local copy of the GeoJSON stored at
-             // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-             script.src = '/condos.json';
-             document.getElementsByTagName('head')[0].appendChild(script);
-           }
 
-           // Loop through the results array and place a marker for each
-           // set of coordinates.
-           window.eqfeed_callback = function(results) {
-             for (var i = 0; i < results.length; i++) {
-              //  var coords = results.features[i].geometry.coordinates;
-               var latLng = new google.maps.LatLng(latitude,longitude);
-               var marker = new google.maps.Marker({
-                 position: latLng,
-                 map: map
-               });
-             }
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCheRcTO2xHYLnSWGJtySnf-t6EZe1DTHc&callback=initMap">
-  </script>
+    <h3>Condos in Gas Lamp District</h3>
+    <div id="map"></div>
   </body>
 
 <h1>condos</h1>
+<form method="get" action="/condos">
+  <label for="search">Search for condos:</label>
+  <input type="text" name="search" placeholder="Search By" />
+  <input type="submit" value="Search" />
+</form>
 
 <table>
   <thead>

@@ -4,9 +4,17 @@ class CondosController < ApplicationController
   # GET /condos
   # GET /condos.json
   def index
-    @condos = Condo.all
+    if params[:search].nil?
+      @condos = Condo.all
+    else
+      @condos = Condo.basic_search(params[:search])
+      render '/condos/index.html'
+    end
   end
 
+  def Search
+
+  end
   # GET /condos/1
   # GET /condos/1.json
   def show
@@ -69,6 +77,6 @@ class CondosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def condo_params
-      params.require(:condo).permit(:name, :location, :latittude, :longitude, :city, :state, :country, :zip_code, :phone_number, :hours)
+      params.require(:condo).permit(:name, :location, :latittude, :longitude, :city, :state, :country, :zip_code, :phone_number, :hours, :image)
     end
 end
