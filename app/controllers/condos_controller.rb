@@ -1,13 +1,13 @@
 class CondosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_condo, only: [:show, :edit, :update, :destroy]
-
   # GET /condos
   # GET /condos.json
   def index
     if params[:search].nil?
-      @condos = Condo.all
+      @condos = current_user.condos.all
     else
-      @condos = Condo.basic_search(params[:search])
+      @condos = current_user.condos.basic_search(params[:search])
       render '/condos/index.html'
     end
   end
@@ -22,7 +22,8 @@ class CondosController < ApplicationController
 
   # GET /condos/new
   def new
-    @condo = Condo.new
+    # @condo = Condo.new
+    @condo = current_user.condos.new
   end
 
   # GET /condos/1/edit
@@ -32,7 +33,7 @@ class CondosController < ApplicationController
   # POST /condos
   # POST /condos.json
   def create
-    @condo = Condo.new(condo_params)
+    @condo = current_user.condos.new(condo_params)
 
     respond_to do |format|
       if @condo.save

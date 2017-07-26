@@ -16,7 +16,9 @@ var map;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
   });
-  fetch('/condos.json')
+  fetch('/condos.json', {
+    credentials: 'include'
+  })
   .then(function(response){return response.json()})
   .then(plotMarkers);
 }
@@ -34,9 +36,9 @@ function plotMarkers(m)
 
     markers.push(
       new google.maps.Marker({
+        position: position,
         center: {lat: 32.7096396, lng: -117.1579107},
         zoom: 13,
-        position: position,
         map: map,
         animation: google.maps.Animation.DROP
       })
