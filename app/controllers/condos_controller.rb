@@ -10,6 +10,7 @@ class CondosController < ApplicationController
       @condos = current_user.condos.basic_search(params[:search])
       render '/condos/index.html'
     end
+
   end
 
   def Search
