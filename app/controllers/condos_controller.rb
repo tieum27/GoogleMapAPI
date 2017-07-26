@@ -4,6 +4,7 @@ class CondosController < ApplicationController
   # GET /condos
   # GET /condos.json
   def index
+    # If statement for the search to return the result
     if params[:search].nil?
       @condos = current_user.condos.all
     else
@@ -24,6 +25,7 @@ class CondosController < ApplicationController
   # GET /condos/new
   def new
     # @condo = Condo.new
+    # New condo after being logged in
     @condo = current_user.condos.new
   end
 
@@ -33,9 +35,10 @@ class CondosController < ApplicationController
 
   # POST /condos
   # POST /condos.json
+  # Create new condo after being logged in
   def create
     @condo = current_user.condos.new(condo_params)
-
+    # Success or error message for the creation of the condo
     respond_to do |format|
       if @condo.save
         format.html { redirect_to @condo, notice: 'Condo was successfully created.' }
@@ -50,6 +53,7 @@ class CondosController < ApplicationController
   # PATCH/PUT /condos/1
   # PATCH/PUT /condos/1.json
   def update
+    # Success or error message for the update of the condo    
     respond_to do |format|
       if @condo.update(condo_params)
         format.html { redirect_to @condo, notice: 'Condo was successfully updated.' }
