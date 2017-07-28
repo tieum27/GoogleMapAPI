@@ -1,6 +1,7 @@
 class CondosController < ApplicationController
   before_action :authenticate_user!
   before_action :set_condo, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
   # GET /condos
   # GET /condos.json
   def index
@@ -11,6 +12,8 @@ class CondosController < ApplicationController
       @condos = current_user.condos.basic_search(params[:search])
       render '/condos/index.html'
     end
+    # Create an Ability for the current user
+    @ability = Ability.new(current_user)
 
   end
 
@@ -53,7 +56,7 @@ class CondosController < ApplicationController
   # PATCH/PUT /condos/1
   # PATCH/PUT /condos/1.json
   def update
-    # Success or error message for the update of the condo    
+    # Success or error message for the update of the condo
     respond_to do |format|
       if @condo.update(condo_params)
         format.html { redirect_to @condo, notice: 'Condo was successfully updated.' }

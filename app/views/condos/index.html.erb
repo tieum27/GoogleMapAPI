@@ -26,6 +26,8 @@
     <tr>
       <th>Name</th>
       <th>Location</th>
+      <th>Latittude</th>
+      <th>Longitude</th>
       <th>City</th>
       <th>Zip code</th>
       <th>State</th>
@@ -41,6 +43,8 @@
       <tr>
         <td><%= condo.name %></td>
         <td><%= condo.location %></td>
+        <td><%= condo.latittude %></td>
+        <td><%= condo.longitude %></td>
         <td><%= condo.city %></td>
         <td><%= condo.zip_code %></td>
         <td><%= condo.state %></td>
@@ -48,15 +52,23 @@
         <td><%= condo.phone_number %></td>
         <td><%= condo.hours %></td>
         <td><%= link_to 'Show', condo %></td>
-        <td><%= link_to 'Edit', edit_condo_path(condo) %></td>
-        <td><%= link_to 'Destroy', condo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @ability.can? :manage, Condo %>
+          <td><%= link_to 'Edit', edit_condo_path(condo) %></td>
+          <td><%= link_to 'Destroy', condo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New condo', new_condo_path %>
+<% if @ability.can? :manage, Condo %>
+  <%= link_to 'New condo', new_condo_path %>
+<% end %>
+ |
+<%= link_to 'Home', root_path %>
+ |
+<%= link_to 'Sign Out', destroy_user_session_path, method: :delete%>
+ |
 <!-- Robs google maps javascript api key -->
 <!-- AIzaSyCheRcTO2xHYLnSWGJtySnf-t6EZe1DTHc -->

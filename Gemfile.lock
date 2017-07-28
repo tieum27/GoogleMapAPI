@@ -45,6 +45,7 @@ GEM
     bindex (0.5.0)
     builder (3.2.3)
     byebug (9.0.6)
+    cancancan (2.0.0)
     capybara (2.14.4)
       addressable
       mime-types (>= 1.16)
@@ -74,6 +75,7 @@ GEM
     erubi (1.6.1)
     execjs (2.7.0)
     ffi (1.9.18)
+    geocoder (1.4.4)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashie (3.5.6)
@@ -153,6 +155,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rolify (5.1.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.1)
@@ -211,9 +214,11 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  cancancan
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise
+  geocoder
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   omniauth-twitter
@@ -221,6 +226,7 @@ DEPENDENCIES
   pg
   puma (~> 3.7)
   rails (~> 5.1.2)
+  rolify
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
